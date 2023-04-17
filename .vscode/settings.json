@@ -1,0 +1,22 @@
+{
+    "editor.tabSize": 2,
+    "editor.minimap.enabled": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "diffEditor.renderSideBySide": false,
+    "editor.formatOnSave": true,
+    "eslint.format.enable": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "files.associations": {
+      "*.hbs": "html"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.rulers": [
+      80
+    ],
+    "workbench.colorCustomizations": {
+      "editorRuler.foreground": "#696969"
+    }
+  }

@@ -2,10 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import { gql } from "@apollo/client";
+import client from "utils/apollo-client";
+
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({anime}) {
+
+  console.log('anime', anime)
+
   return (
     <>
       <Head>
@@ -111,4 +117,27 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      query ($id: Int) { # Define which variables will be used in the query (id)
+      Media (id: $id, type: ANIME) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+        id
+        title {
+          romaji
+          english
+          native
+        }
+      }
+    }
+    `,
+  });
+
+  return {
+    props: {
+      anime: data
+    },
+ };
 }
