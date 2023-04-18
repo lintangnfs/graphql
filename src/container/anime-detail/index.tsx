@@ -42,7 +42,6 @@ const AnimeDetail = (props: AnimeDetailProps) => {
   return (
     <>
       <div className="anime-detail">
-        DETAIL
         <div className="anime-detail-image">
           {
             detail?.coverImage?.large && 
@@ -51,8 +50,15 @@ const AnimeDetail = (props: AnimeDetailProps) => {
         </div>
         <div className="anime-detail-info">
           <div className="anime-detail-title">
-          {title?.english &&  <p className="anime-detail-title english">{title.english}</p>}
-          {title && title.native?.toLowerCase() !== title.english?.toLowerCase() && <p className="anime-detail-title native">{title.native}</p>}
+            {title?.english &&  <p className="anime-detail-title english">{title.english}</p>}
+            {title && title.native?.toLowerCase() !== title.english?.toLowerCase() && 
+              <p className="anime-detail-title native">{title.native}</p>
+            }
+          </div>
+          <div className="anime-detail-attribute">
+            <div>{detail?.genres?.join(" | ")}</div>
+            <div>{detail?.averageScore}</div>
+            <div>{detail?.popularity}</div>
           </div>
         </div>
       </div>

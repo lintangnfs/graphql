@@ -9,7 +9,8 @@ export type Animetype = {
   averageScore?: number;
   coverImage: {
     large: string;
-  }
+  },
+  genres?: string[];
 }
 
 export type PageOptType = {

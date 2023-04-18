@@ -67,10 +67,11 @@ const AnimeList = (props: AnimeListProps) => {
     window.location.href = `/anime/${id}`;
   }
 
+  const isFirstFetch = media === undefined || media === null;
+
   return (
     <>
       <div className="anime-content">
-        <div className="anime-data">
           {
             media && media.map((item : Animetype, index) => 
             (
@@ -83,21 +84,29 @@ const AnimeList = (props: AnimeListProps) => {
               </div>
             ))
           }
+          {
+            loading && isFirstFetch && (
+              <div className="anime-shimmer">
+
+              </div>
+            )
+          }
         </div>
         <div ref={ref} style={{ height: 100 }}/>
-      </div>
       <style jsx>
         {`
+          .anime-shimmer {
+            min-width: 100vw;
+            max-width: 1200px;
+            height: 100vh;
+          }
           .anime-content {
-            min-width: 100vh;
+            min-width: 100vw;
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             gap: 10px;
             grid-template-columns: repeat(5, 1fr);
-          }
-          .anime-data {
-            min-height: 100vh;
           }
           .anime-list {
             width: 210px;
