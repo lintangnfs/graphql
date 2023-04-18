@@ -14,7 +14,7 @@ const AnimeList = (props: AnimeListProps) => {
   const { setNode, entry } = useIntersect(props.options);
   const [variables, setVariables] = useState({
     page: 1,
-    perPage: 30,
+    perPage: 20,
   });
   const [loading, setLoading] = useState(true);
   const [pageOpt, setPageOpt] = useState<PageOptType | null>(null);
@@ -33,7 +33,7 @@ const AnimeList = (props: AnimeListProps) => {
     if (entry?.isIntersecting && !loading) {
         setTimeout(() => {
           handleChange();
-        }, 1000 );
+        }, 500 );
       }
     }, [entry, props, loading, handleChange]);
 
@@ -97,19 +97,20 @@ const AnimeList = (props: AnimeListProps) => {
         {`
           .anime-shimmer {
             min-width: 100vw;
-            max-width: 1200px;
             height: 100vh;
           }
           .anime-content {
-            min-width: 100vw;
-            max-width: 1200px;
+            max-width: 1050px;
             margin: 0 auto;
             display: grid;
             gap: 10px;
             grid-template-columns: repeat(5, 1fr);
           }
           .anime-list {
-            width: 210px;
+            width: 100%;
+            min-width: 200px;
+            max-width: 210px;
+            display: flex;
           }
           @media (max-width: 1070px) {
             .anime-content { 
