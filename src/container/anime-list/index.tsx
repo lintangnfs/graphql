@@ -21,7 +21,6 @@ const AnimeList = (props: AnimeListProps) => {
 
   const media = data && data.Page.media;
 
-  console.log(media)
 
   return (
     <>
