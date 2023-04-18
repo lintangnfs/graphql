@@ -1,17 +1,13 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import { 
-  gql, 
-  ApolloProvider, 
-} from "@apollo/client";
-import client from "utils/apollo-client";
-import { qAnimeList } from 'utils/query';
+import { ApolloProvider } from "@apollo/client";
+import client from "graphql/apollo-client";
+import dynamic from 'next/dynamic';
 
+const AnimeList = dynamic(() => import("container/anime-list"), {
+  ssr: false,
+});
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home({anime}) {
-  console.log('anime', anime)
+export default function Home() {
   return (
     <>
       <Head>
@@ -21,12 +17,10 @@ export default function Home({anime}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div style={{height: "100vh"}}><h1>ANIME WORLD</h1></div>
+        <div><h1>ANIME WORLD</h1></div>
         <div> 
           <ApolloProvider client={client}>
-            <div>
-
-            </div>
+            <AnimeList />
           </ApolloProvider>
         </div>
       </main>
@@ -34,18 +28,4 @@ export default function Home({anime}) {
   )
 }
 
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: qAnimeList,
-    variables: {
-      page: 1,
-      perPage: 10
-    }
-  });
 
-  return {
-    props: {
-      anime: data
-    },
- };
-}

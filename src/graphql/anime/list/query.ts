@@ -1,6 +1,7 @@
+
 import { gql } from "@apollo/client";
 
-export const qAnimeList = gql`
+const qAnimeList = gql`
 query ($id: Int, $page: Int, $perPage: Int, $search: String) {
   Page (page: $page, perPage: $perPage) {
     pageInfo {
@@ -14,21 +15,15 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       id
       title {
         romaji
+        native
+        english
+      }
+      coverImage {
+        large
       }
     }
   }
 }
 `
 
-export const qAnimeDetail = gql`
-query ($id: Int) { # Define which variables will be used in the query (id)
-  Media (id: $id, type: ANIME) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
-    id
-    title {
-      romaji
-      english
-      native
-    }
-  }
-}
-`
+export default qAnimeList;
