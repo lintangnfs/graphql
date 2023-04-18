@@ -8,6 +8,8 @@ const AnimeList = dynamic(() => import("container/anime-list"), {
 });
 
 export default function Home() {
+
+  
   return (
     <>
       <div className="anime-page"> 

@@ -13,6 +13,14 @@ export type Animetype = {
   genres?: string[];
 }
 
+export type AnimeListType = {
+  data: {
+    Page: {
+      media: Animetype[];
+    }
+  }
+}
+
 export type PageOptType = {
   total: number;
   currentPage: number;

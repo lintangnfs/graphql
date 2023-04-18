@@ -2,9 +2,8 @@ import client from "graphql/apollo-client";
 import qAnimeDetail from "./query";
 
 const getDataAnimeDetail = async (variables: {
-  id?: string | null;
-}) => 
-{
+  id?: string
+}) => {
   try {
     const data = await client.query({
       query: qAnimeDetail,

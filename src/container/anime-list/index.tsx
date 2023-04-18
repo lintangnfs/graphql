@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import AnimeCard from "components/anime-card";
-import { Animetype, PageOptType } from 'utils/constant';
+import { Animetype, PageOptType, AnimeListType } from 'utils/constant';
 import getDataAnimeList from "graphql/anime/list";
 import { useIntersect } from "hooks/useIntersectionObserverHooks";
 
@@ -43,12 +43,11 @@ const AnimeList = (props: AnimeListProps) => {
     setLoading(true);
 
     const fetchData = async() => {
-
         try {
           const data = await getDataAnimeList(variables);
-          const pageData = data && data.data.Page;
-          const mediaNew = pageData.media;
-          const pageInfo = pageData.pageInfo;
+          const pageData = data && data?.data?.Page;
+          const mediaNew = pageData?.media;
+          const pageInfo = pageData?.pageInfo;
           setMedia((prev) => prev !== null ? [...prev, ...mediaNew] : []);
           setPageOpt(pageInfo);
 
