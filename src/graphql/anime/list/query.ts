@@ -14,13 +14,15 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
     media (id: $id, search: $search) {
       id
       title {
-        romaji
         native
         english
       }
       coverImage {
         large
       }
+      genres
+      popularity
+      averageScore
     }
   }
 }

@@ -1,12 +1,22 @@
 import React from "react";
+import { useRouter } from "next/router";
 
-interface AnimeProps {
-  
-}
+import dynamic from 'next/dynamic';
 
-const Anime = (props: AnimeProps) => {
+const AnimeDetail = dynamic(() => import("container/anime-detail"), {
+  ssr: false,
+});
+
+const Detail = () => {
+
+  const { query } = useRouter();
+  const { id } = query ;
+
   return (
     <>
+      {
+        id && <AnimeDetail dataId={`${id}`}/>
+      }
       <style jsx>
         {`
           
@@ -16,4 +26,4 @@ const Anime = (props: AnimeProps) => {
   );
 };
 
-export default Anime;
+export default Detail;
