@@ -1,12 +1,12 @@
-import client from "graphql/apollo-client";
-import mFavorite from "./query";
+import client from "graphql/apollo-client-with-auth";
+import mFavorite from "./mutation";
 
 const mutateFavorite = async (variables: {
-  mediaId?: string
+  animeId?: string
 }) => {
   try {
-    const data = await client.query({
-      query: mFavorite,
+    const data = await client.mutate({
+      mutation: mFavorite,
       variables: variables
     });
     return data;

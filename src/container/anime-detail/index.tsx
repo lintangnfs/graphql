@@ -20,7 +20,7 @@ const AnimeDetail = (props: AnimeDetailProps) => {
   
   useEffect(() => {
 
-    setLoading(true);
+    setLoading(true)
 
     const fetchData = async() => {
 
@@ -30,8 +30,8 @@ const AnimeDetail = (props: AnimeDetailProps) => {
           const detailData = data && data.data.Media;
           setDetail(detailData);
 
-        } catch {
-
+        } catch(err) {
+          console.log(err)
         } finally {
           setLoading(false);
         }
@@ -41,11 +41,14 @@ const AnimeDetail = (props: AnimeDetailProps) => {
 
   }, [props.dataId]);
   
-  const handleBookmark = async() => {
+  const handleBookmark = async () => {
+    
     try {
 
-      const data = await mutateFavorite({mediaId: props.dataId});
-
+      const data = await mutateFavorite({ animeId: props.dataId });
+      if (data?.data?.ToggleFavourite) {
+        window.location.href = `/anime/${props.dataId}`;
+      }
     } catch {
 
     } finally {
@@ -100,9 +103,12 @@ const AnimeDetail = (props: AnimeDetailProps) => {
           )
         }
         {
-          !detail && (
+          !detail && !loading && (
             <div className="anime-detail">
-              <h1 style={{color: "white"}}>Data not found</h1>
+              <div>
+                <h1 style={{ color: "white" }}>Oops, data not found</h1>
+                <p className="empty-check" style={{color: "white"}}>Please check another data :)</p>
+              </div>
             </div>
           )
         }
@@ -112,7 +118,8 @@ const AnimeDetail = (props: AnimeDetailProps) => {
           .anime-page {
             min-width: 100vw;
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
+            height: max-content;
             display: flex;
             background-color: #1b101f;
           }
@@ -120,7 +127,8 @@ const AnimeDetail = (props: AnimeDetailProps) => {
             gap: 25px;
             width: 100%;
             display: flex;
-            height: 100%;
+            min-height: 100vh;
+            height: max-content;
             align-items: center;
             justify-content: center;
           }
@@ -174,6 +182,49 @@ const AnimeDetail = (props: AnimeDetailProps) => {
           }
           .anime-detail-genre {
             margin-bottom: 20px;
+          }
+          .empty-check {
+            margin-top: 20px;
+            letter-spacing: 0.28rem;
+          }
+          .anime-detail-bookmark .active {
+            color: #e19725;
+          }
+          .anime-detail-bookmark .deactive {
+            color: white;
+          }
+          .anime-detail-bookmark span {
+            font-size: 2em;
+          }
+          @media (max-width: 500px) {
+            .anime-detail {
+              padding: 40px 8vw 10vh;
+              display: block;
+            }
+            .anime-detail-info {
+              margin-top: 30px;
+            }
+            .anime-detail.banner {
+              background-image: linear-gradient(to bottom,
+                transparent 0%,
+                #1b101f 30%), url(${detail?.bannerImage});
+            }
+          }
+        `}
+      </style>
+      <style>
+        {`
+           @media (max-width: 500px) {
+            .anime-detail-image .image-wrapper {
+              width: 83.5vw;
+              height: calc(3/2 * 83.5vw);
+            }
+            .anime-detail-image {
+              margin: auto;
+            }
+            .anime-detail-image img  {
+              border-radius: 16px;
+            }
           }
         `}
       </style>
