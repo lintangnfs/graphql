@@ -21,7 +21,8 @@
       "utils/*": ["utils/*"],
       "pages/*": ["src/pages/*"],
       "styles/*": ["styles/*"],
-      "hooks/*": ["hooks/*"]
+      "hooks/*": ["hooks/*"],
+      "assets/*": ["assets/*"],
     },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

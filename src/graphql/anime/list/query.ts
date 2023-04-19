@@ -11,7 +11,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       hasNextPage
       perPage
     }
-    media (id: $id, search: $search) {
+    media (id: $id, search: $search, sort: TRENDING_DESC) {
       id
       title {
         native

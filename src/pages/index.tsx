@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <div className="anime-page"> 
         <div className="anime-content">
-          <div><h1>ANIME WORLD</h1></div>
+          <div><h1 className="anime-title-page">ANIME WORLD</h1></div>
           <ApolloProvider client={client}>
             <AnimeList />
           </ApolloProvider>
@@ -23,12 +23,20 @@ export default function Home() {
       <style jsx>
         {`
           .anime-page {
-            width: 100vw;
+            min-width: 100vw;
+            width: max-content;
             height: 100vh;
             display: flex;
+            background-color: #faf9f2;
           }
           .anime-content {
-            margin: auto;
+            margin: 50px auto;
+            max-width: 1200px;
+          }
+          .anime-title-page {
+            margin: 0 0 30px; 
+            letter-spacing: 0.08rem;
+            font-family: 'Nunito', sans-serif;
           }
         `}
       </style>

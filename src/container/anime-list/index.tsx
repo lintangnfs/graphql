@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import AnimeCard from "components/anime-card";
-import { Animetype, PageOptType, AnimeListType } from 'utils/constant';
+import { Animetype, PageOptType } from 'utils/constant';
 import getDataAnimeList from "graphql/anime/list";
 import { useIntersect } from "hooks/useIntersectionObserverHooks";
 
@@ -102,13 +102,12 @@ const AnimeList = (props: AnimeListProps) => {
             max-width: 1050px;
             margin: 0 auto;
             display: grid;
-            gap: 10px;
+            gap: 15px;
             grid-template-columns: repeat(5, 1fr);
           }
           .anime-list {
             width: 100%;
-            min-width: 200px;
-            max-width: 210px;
+            width: 200px;
             display: flex;
           }
           @media (max-width: 1050px) {

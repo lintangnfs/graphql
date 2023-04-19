@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import offline from "assets/illustration/offline.jpg"
 
 const Offline = () => {
   return (
@@ -10,7 +11,7 @@ const Offline = () => {
             <Image
               fill
               className="img-representative"
-              src="/assets/illustration/offline.jpg"
+              src={offline}
               alt="Anime cover"
               loading="eager"
             />

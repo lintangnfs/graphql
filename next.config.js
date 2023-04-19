@@ -6,7 +6,7 @@ const withPWA = require("next-pwa")({
     skipWaiting: true,
     runtimeCaching,
     // swSrc: 'service-worker.js',
-    buildExcludes: [/middleware-manifest.json$/],
+    // buildExcludes: [/middleware-manifest.json$/],
 });
 
 const nextConfig = withPWA({
