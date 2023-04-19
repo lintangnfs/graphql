@@ -11,12 +11,13 @@ const AnimeList = dynamic(() => import("container/anime-list"), {
 export default function Home() {
   const router = useRouter();
   const [token, setToken] = useState<string | null | undefined>();
-
-  const clientId = process.env.ANILIST_CLIENT_ID;
+  const [clientId, setClientId] = useState<string | null | undefined>();
 
   useEffect(() => {
+    const idClient  = process.env.ANILIST_CLIENT_ID;
     const token = localStorage.getItem('token');
     setToken(token);
+    setClientId(idClient ?? "12244");
   }, [])
 
   useEffect(() => {
@@ -37,8 +38,10 @@ export default function Home() {
           <div style={{display: "flex", justifyContent: "space-between"}}>
             <h1 className="anime-title-page">ANIME WORLD</h1>
             {
-              token ? (<a href={`https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&response_type=token`}>Login with AniList</a>) 
-                : (<div>Bookmark</div>)
+              token && clientId && (<a href={`https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&response_type=token`}>Login with AniList</a>)
+            }
+            {
+              !token && (<div>Bookmark</div>)
             }
           </div>
           <ApolloProvider client={client}>
