@@ -1,10 +1,10 @@
 import { ApolloClient, InMemoryCache, } from "@apollo/client";
 
-const URL = 'https://graphql.anilist.co'
+const URL = 'https://anilist.co/api/v2/oauth/token'
 
-const client = new ApolloClient({
+const auth = new ApolloClient({
     uri: URL,
     cache: new InMemoryCache(),
 });
 
-export default client;
+export default auth;

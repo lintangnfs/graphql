@@ -48,8 +48,10 @@ const AnimeList = (props: AnimeListProps) => {
           const pageData = data && data?.data?.Page;
           const mediaNew = pageData?.media;
           const pageInfo = pageData?.pageInfo;
-          setMedia((prev) => prev !== null ? [...prev, ...mediaNew] : []);
-          setPageOpt(pageInfo);
+          if (mediaNew && mediaNew.length > 0) {
+            setMedia((prev) => prev !== null ? [...prev, ...mediaNew] : []);
+            setPageOpt(pageInfo);
+          }
 
         } catch {
 

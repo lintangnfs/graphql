@@ -18,9 +18,15 @@ export default function Document() {
         <link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png"/>
         <link rel="manifest" href="/manifest.json"/>
-        <meta name="msapplication-TileColor" content="#ffffff"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        />
+        <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/icon/ms-icon-144x144.png"/>
         <meta name="theme-color" content="#ffffff"/>
+        
       </Head>
       <body>
         <Main />

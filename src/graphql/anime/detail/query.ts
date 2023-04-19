@@ -15,6 +15,9 @@ query ($id: Int) {
     genres
     popularity
     averageScore
+    bannerImage
+    description
+    isFavourite
   }
 }
 `

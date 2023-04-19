@@ -3,6 +3,7 @@ import Image from "next/image";
 
 interface AnimeImageProps {
   src: string;
+  width?: string | "200px";
   rounded?: boolean;
 }
 
@@ -22,8 +23,8 @@ const AnimeImage = (props: AnimeImageProps) => {
         {`
           .image-wrapper {
             position: relative;
-            width: 200px;
-            height: calc(32/23 * 200px)
+            width: ${props.width ?? "200px"};
+            height: calc(32/23 * ${props.width ?? "200px"})
           }
         `}
       </style>

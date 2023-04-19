@@ -23,6 +23,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       genres
       popularity
       averageScore
+      isFavourite
     }
   }
 }

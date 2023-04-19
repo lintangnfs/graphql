@@ -10,7 +10,10 @@ export type Animetype = {
   coverImage: {
     large: string;
   },
+  bannerImage: string;
   genres?: string[];
+  description: string;
+  isFavourite?: boolean;
 }
 
 export type AnimeListType = {

@@ -30,7 +30,6 @@ const Card = (props: CardProps) => {
             {(title.english || title.native) && <p className="card-title">{handleTextEllipsis()}</p>}
           </div>
           <div className="card-detail">
-            {/* <div className="card-score vertical-separator">{averageScore}%</div> */}
             <div className="card-rating">{genres?.join(" | ")}</div>
             {
               averageScore && (
