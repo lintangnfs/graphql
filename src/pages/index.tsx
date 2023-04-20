@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import getViewer from "graphql/user/viewer";
+import Head from "next/head";
 
 const AnimeList = dynamic(() => import("container/anime-list"), {
   ssr: false,
@@ -69,29 +70,53 @@ export default function Home() {
   
   return (
     <>
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+          name="viewport"
+          content="height=device-height,width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
+        <title>Anime World</title>
+        <meta
+          name="description"
+          content="Anime World"
+        />
+        <meta
+          property="og:title"
+          content="Anime World"
+        />
+        <meta
+          property="og:description"
+          content="Anime World"
+        />
+      </Head>
       <div className="anime-page"> 
         <div className="anime-content">
-          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+          <div className="anime-title-top">
             <h1 className="anime-title-page" style={{color: "#1b101f"}}>ANIME WORLD</h1>
-            {
-              !token && clientId && (<a href={`https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&response_type=token`}>Login with AniList</a>)
-            }
-            {
-              token && (
-                <div style={
-                  {
-                    display: "flex",
-                    cursor: "pointer",
-                    fontSize: 16,
-                    alignItems: "center",
-                    color: "#1b101f"
-                  }}
-                  onClick={handleShowBookmark}
-                >
-                  <p style={{fontWeight: 600, marginRight: 8}}>Bookmark</p>
-                  <span className="material-symbols-rounded">bookmark</span>
-                </div>)
-            }
+            <div className="anime-action">
+              {
+                !token && clientId && (<a href={`https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&response_type=token`}>Login with AniList</a>)
+              }
+              {
+                token && (
+                  <div
+                    className="anime-tool"
+                    style={{
+                      display: "flex",
+                      cursor: "pointer",
+                      fontSize: 16,
+                      alignItems: "center",
+                      color: "#1b101f"
+                    }}
+                    onClick={handleShowBookmark}
+                  >
+                    <p style={{fontWeight: 600, marginRight: 8}}>Bookmark</p>
+                    <span className="material-symbols-rounded">bookmark</span>
+                  </div>)
+              }
+            </div>
           </div>
           <ApolloProvider client={client}>
             <AnimeList />
@@ -113,9 +138,33 @@ export default function Home() {
             max-width: 1200px;
             font-family: 'Nunito', sans-serif;
           }
+          .anime-title-top {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200;
+            margin: 0 0 50px; 
+          }
           .anime-title-page {
-            margin: 0 0 30px; 
             letter-spacing: 0.08rem;
+          }
+          .anime-action {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 15px;
+          }
+          .anime-action input{
+            width: 100%;
+						font-size: 16px;
+						padding: 4px 8px;
+						border-radius: 16px;
+						text-decoration: none;
+						outline: none !important;
+						transition: 300ms box-shadow;
+						border: solid 1px rgba(0, 0, 0, .2);
+						box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+            text-decoration: none;
           }
         `}
       </style>

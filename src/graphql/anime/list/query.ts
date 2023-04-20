@@ -2,7 +2,7 @@
 import { gql } from "@apollo/client";
 
 const qAnimeList = gql`
-query ($id: Int, $page: Int, $perPage: Int, $search: String,) {
+query ($id: Int, $page: Int, $perPage: Int, $search: String, $genre: String) {
   Page (page: $page, perPage: $perPage) {
     pageInfo {
       total
@@ -11,7 +11,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String,) {
       hasNextPage
       perPage
     }
-    media (id: $id, search: $search, sort: TRENDING_DESC) {
+    media (id: $id, search: $search, genre: $genre, sort: TRENDING_DESC) {
       id
       title {
         native
@@ -26,6 +26,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String,) {
       isFavourite
     }
   }
+  GenreCollection
 }
 `
 

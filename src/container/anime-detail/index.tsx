@@ -196,13 +196,23 @@ const AnimeDetail = (props: AnimeDetailProps) => {
           .anime-detail-bookmark span {
             font-size: 2em;
           }
-          @media (max-width: 500px) {
+          @media (max-width: 880px) {
+            .anime-detail-info {
+              color: white;
+              font-family: 'Nunito', sans-serif;
+              max-width: 300px;
+            }
+          }
+          @media (max-width: 600px) {
             .anime-detail {
               padding: 40px 8vw 10vh;
               display: block;
             }
+            .anime-detail * {
+              margin: inherit auto;
+            }
             .anime-detail-info {
-              margin-top: 30px;
+              margin: 30px auto;
             }
             .anime-detail.banner {
               background-image: linear-gradient(to bottom,
@@ -214,6 +224,12 @@ const AnimeDetail = (props: AnimeDetailProps) => {
       </style>
       <style>
         {`
+           @media (max-width: 600px) {
+            .anime-detail-image .image-wrapper {
+              margin: auto;
+            }
+           }
+
            @media (max-width: 500px) {
             .anime-detail-image .image-wrapper {
               width: 83.5vw;

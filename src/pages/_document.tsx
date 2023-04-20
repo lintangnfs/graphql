@@ -23,6 +23,7 @@ export default function Document() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/icon/ms-icon-144x144.png"/>
         <meta name="theme-color" content="#ffffff"/>
