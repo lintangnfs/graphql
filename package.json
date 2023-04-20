@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "start": "cp .env.prod .env && next start",
-    "local": "cp .env.loc .env && next dev"
+    "start": "cp .env.production .env && next start",
+    "local": "cp .env.local .env && next dev"
   },
   "dependencies": {
     "@apollo/client": "^3.7.12",

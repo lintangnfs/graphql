@@ -20,7 +20,7 @@ export default function Home() {
     const idClient  = process.env.NEXT_PUBLIC_ANILIST_CLIENT_ID;
     const token = localStorage.getItem('token');
     setToken(token);
-    setClientId(idClient ?? "12244");
+    setClientId(idClient);
   }, [])
 
   useEffect(() => {
