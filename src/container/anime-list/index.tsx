@@ -110,7 +110,7 @@ const AnimeList = (props: AnimeListProps) => {
   return (
     <>
       <div className="anime-toolbox">
-        <div style={{position: "relative"}}>
+        <div className="anime-genre-wrapper" style={{position: "relative"}}>
           <div className="anime-tool" style={{cursor: "pointer", color: "#1b101f"}} onClick={() => setOpenGenre(!openGenre)}>
             {genre?.length > 0 ? genre : `Genre`}
           </div>
@@ -233,6 +233,13 @@ const AnimeList = (props: AnimeListProps) => {
             color: #1b101f;
             text-align: center;
             align-self: center;
+          }
+          @media (max-width: 600px) {
+            .anime-genre-wrapper,
+            .anime-tool { 
+              width: 100%;
+              justify-content: center;
+            }
           }
         `}
       </style>
