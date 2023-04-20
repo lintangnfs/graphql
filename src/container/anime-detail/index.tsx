@@ -27,21 +27,19 @@ const AnimeDetail = (props: AnimeDetailProps) => {
 
   useEffect(() => {
 
-    setLoading(true)
-
     const fetchData = async() => {
+      setLoading(true)
+      try {
 
-        try {
+        const data = await getDataAnimeDetail({id: props.dataId});
+        const detailData = data && data.data.Media;
+        setDetail(detailData);
 
-          const data = await getDataAnimeDetail({id: props.dataId});
-          const detailData = data && data.data.Media;
-          setDetail(detailData);
-
-        } catch(err) {
-          console.log(err)
-        } finally {
-          setLoading(false);
-        }
+      } catch(err) {
+        console.log(err)
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchData();

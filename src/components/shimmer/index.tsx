@@ -13,7 +13,7 @@ const Shimmer = (props: ShimmerProps) => {
   return (
     <>
       <div className="shine" style={{width, height, borderRadius: `${rounded ?? 0}`}} />
-      <style>
+      <style jsx>
         {`
           .shine {
             background: #dbdbdb;
@@ -21,14 +21,14 @@ const Shimmer = (props: ShimmerProps) => {
             background-repeat: no-repeat;
             display: inline-block;
             position: relative; 
-            -webkit-animation-duration: 1s;
-            -webkit-animation-fill-mode: forwards; 
-            -webkit-animation-iteration-count: infinite;
-            -webkit-animation-name: placeholderShimmer;
-            -webkit-animation-timing-function: linear;
+            animation-duration: 1s;
+            animation-fill-mode: forwards; 
+            animation-iteration-count: infinite;
+            animation-name: placeholderShimmer;
+            animation-timing-function: linear;
           }
 
-          @-webkit-keyframes placeholderShimmer {
+          @keyframes placeholderShimmer {
             0% {
               background-position: -468px 0;
             }

@@ -33,7 +33,7 @@ const DetailShimmer = (props: ShimmerProps) => {
           </div>
         </div>
       </div>
-      <style>
+      <style jsx>
       {`
           .shimmer-page {
             min-width: 100vw;

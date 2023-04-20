@@ -16,7 +16,7 @@ const ListShimmer = (props: ShimmerProps) => {
           array.map((item: number) =>  <Shimmer key={`list-shimmer-${String(item)}`} width="200px" height="400px" rounded="16px"/>)
         }
       </div>
-      <style>
+      <style jsx>
         {`
           .content {
             max-width: 1050px;
@@ -41,7 +41,7 @@ const ListShimmer = (props: ShimmerProps) => {
               grid-template-columns: repeat(2, 1fr);
             }
           }
-          @media (max-width: 420px) {
+          @media (max-width: 410px) {
             .content { 
               grid-template-columns: repeat(1, 1fr);
             }

@@ -35,7 +35,7 @@ export default function Bookmark() {
       <div className="anime-page"> 
         <div className="anime-content">
           <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-            <h1 className="anime-title-page" style={{color: "#1b101f"}}>YOUR FAVOURITE</h1>
+            <h1 className="anime-title-page" style={{color: "#1b101f"}}>YOUR BOOKMARK</h1>
           </div>
           <ApolloProvider client={client}>
             <UserFav/>

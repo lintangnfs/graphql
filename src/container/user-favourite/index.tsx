@@ -20,6 +20,7 @@ const UserFav = (props: UserFavProps) => {
   });
   const [loading, setLoading] = useState(true);
   const [media, setMedia] = useState<Animetype[] | null | []>(null);
+  const [notAutorized, setNotAutorized] = useState(false);
 
   const handleChange = useCallback(
 		() => !loading ? setVariables((prev) => ({...prev, page: variables.page + 1})) : null,
@@ -41,37 +42,40 @@ const UserFav = (props: UserFavProps) => {
   
   useEffect(() => {
 
-    setLoading(true);
 
     const auth = localStorage.getItem("auth");
     const authJson = auth ? JSON.parse(auth) : null
     const id = authJson?.id
 
     const fetchData = async () => {
-
-      if (id) {
-
-        try {
-          const data = await getDataUserFav({ id });
-          if (data?.data) {
-            const favorites = data.data.User.favourites.anime.edges;
-            const anime = favorites.map((item: any) => {
-              const { node } = item;
-              return {...node}
-            })
-            setMedia(anime);
-          }
-  
-        } catch {
-  
-        } finally {
-          setLoading(false);
+      setLoading(true);
+      try {
+        const data = await getDataUserFav({ id });
+        if (data?.data) {
+          const favorites = data.data.User.favourites.anime.edges;
+          const anime = favorites.map((item: any) => {
+            const { node } = item;
+            return {...node}
+          })
+          setMedia(anime);
         }
+
+      } catch {
+
+      } finally {
+        setLoading(false);
       }
-      
+    
     }
 
-    fetchData();
+    if (id) {
+
+      fetchData();
+    } else {
+      localStorage.removeItem("token");
+      localStorage.removeItem("auth");
+      setNotAutorized(true)
+    }
 
 	}, [variables]);
 
@@ -79,19 +83,48 @@ const UserFav = (props: UserFavProps) => {
     window.location.href = `/anime/${id}`;
   }, [])
 
+  const handleBackToHomepage = useCallback(() => {
+    window.location.href = `/`;
+  }, [])
+
   return (
     <>
         {
-          media && (
+          media && !notAutorized && (
             <List data={media} handleViewDetail={handleViewDetail}/>
           )
         }
         {
-          loading && (
+          !loading && (!media || media.length < 1) && !notAutorized &&  (
+            <div className="anime-content">
+              <div className="anime-list">Your boormark is empty</div>
+            </div>
+          )
+        } 
+        {
+          loading && !notAutorized &&  (
             <ListShimmer/>
           )
         } 
-        <div ref={ref} style={{ height: 100 }}/>
+        {
+          notAutorized && (
+            <div style={{margin: "auto", width: 300, marginTop: 50}}>
+              <h2 style={{ textAlign: "center" }}>Please login again to access this page</h2>
+              <p
+              style={{
+                textAlign: "center",
+                fontSize: 20, marginTop: 30,
+                cursor: "pointer",
+                color: "red"
+              }}
+              onClick={handleBackToHomepage}
+              >
+                Go to Homepage
+              </p>
+            </div>
+          )
+        }
+        {/* <div ref={ref} style={{ height: 100 }}/> */}
       <style jsx>
         {`
           .anime-shimmer {
