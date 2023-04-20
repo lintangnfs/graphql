@@ -43,9 +43,9 @@ const List = (props: ListProps) => {
             justify-items: center;
           }
           .anime-list {
-            width: 100%;
             width: 200px;
             display: flex;
+            justify-content: center;
           }
           @media (max-width: 1050px) {
             .anime-content { 
@@ -60,11 +60,16 @@ const List = (props: ListProps) => {
           @media (max-width: 620px) {
             .anime-content { 
               grid-template-columns: repeat(2, 1fr);
+              gap: 8px;
             }
           }
-          @media (max-width: 420px) {
+          @media (max-width: 410px) {
             .anime-content { 
               grid-template-columns: repeat(1, 1fr);
+            }
+            .anime-list {
+              width: 90%;
+              display: flex;
             }
           }
         `}

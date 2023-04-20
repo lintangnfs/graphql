@@ -96,6 +96,9 @@ const Card = (props: CardProps) => {
           .card-average {
             font-size: 14px;
           }
+          @media (max-width: 420px) {
+           
+          }
         `}
       </style>
       <style>
