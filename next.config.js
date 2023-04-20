@@ -14,6 +14,10 @@ const nextConfig = withPWA({
   images: {
     domains: ["s4.anilist.co"],
   },
+  presets: [
+    '@babel/preset-env',
+    ['@babel/preset-react', {runtime: 'automatic'}],
+  ]
 })
 
 module.exports = nextConfig

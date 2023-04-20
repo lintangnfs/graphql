@@ -176,9 +176,12 @@ export default function Home() {
               margin: 0 0 50px; 
               gap: 10px;
             }
-            .anime-action,
-            .anime-tool { 
+            .anime-action {
               width: 100%;
+              justify-content: center;
+            }
+            .anime-tool { 
+              width: 80%;
               justify-content: center;
             }
           }

@@ -62,7 +62,11 @@ const AnimeDetail = (props: AnimeDetailProps) => {
   }
 
   const title = detail?.title;
-  const titleShown = title?.english ?? title?.native
+  const titleShown = title?.english ?? title?.native;
+  
+  const handleBackToHomepage = () => {
+    window.location.href = `/`;
+  }
 
   return (
     <div>
@@ -119,7 +123,19 @@ const AnimeDetail = (props: AnimeDetailProps) => {
             <div className="anime-detail">
               <div>
                 <h1 style={{ color: "white" }}>Oops, data not found</h1>
-                <p className="empty-check" style={{color: "white"}}>Please check another data :)</p>
+                <p className="empty-check" style={{ color: "white" }}>Please check another data :)</p>
+                  <p
+                    style={{
+                      textAlign: "center",
+                      fontSize: 20,
+                      marginTop: 30,
+                      cursor: "pointer",
+                      color: "red",
+                    }}
+                    onClick={handleBackToHomepage}
+                  >
+                    Go to Homepage
+                  </p>
               </div>
             </div>
           )

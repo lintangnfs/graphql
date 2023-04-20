@@ -132,7 +132,7 @@ const AnimeList = (props: AnimeListProps) => {
             )
           }
         </div>
-        <div>
+        <div className="anime-input-wrapper">
           <input
             className="anime-search-input"
             placeholder="Cari anime..."
@@ -235,10 +235,22 @@ const AnimeList = (props: AnimeListProps) => {
             align-self: center;
           }
           @media (max-width: 600px) {
-            .anime-genre-wrapper,
-            .anime-tool { 
+            .anime-genre-wrapper{
               width: 100%;
+            }
+            .anime-tool { 
+              width: 80%;
+              margin: auto;
               justify-content: center;
+            }
+            .anime-input-wrapper {
+              width: 100%;
+              text-align: center;
+            }
+            .anime-input-wrapper .anime-search-input {
+              width: 80%;
+              margin: auto;
+              text-align: center;
             }
           }
         `}
