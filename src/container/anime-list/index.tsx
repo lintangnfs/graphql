@@ -108,7 +108,7 @@ const AnimeList = (props: AnimeListProps) => {
     <>
       <div className="anime-toolbox">
         <div style={{position: "relative"}}>
-          <div className="anime-tool" style={{cursor: "pointer"}} onClick={() => setOpenGenre(!openGenre)}>
+          <div className="anime-tool" style={{cursor: "pointer", color: "#1b101f"}} onClick={() => setOpenGenre(!openGenre)}>
             Genre
           </div>
           {
@@ -203,6 +203,7 @@ const AnimeList = (props: AnimeListProps) => {
           .anime-genre .anime-genre-item {
             cursor: pointer;
             padding: 2px 10px;
+            color: #1b101f;
           }
           .anime-genre .anime-genre-item:hover {
             color: white;
@@ -237,6 +238,7 @@ const AnimeList = (props: AnimeListProps) => {
             border-radius: 20px;
             border: solid 1px #1b101f;
             padding: 2px 10px;
+            color: #1b101f;
           }
         `}
       </style>
