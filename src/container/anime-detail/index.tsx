@@ -18,7 +18,13 @@ const AnimeDetail = (props: AnimeDetailProps) => {
   const [detail, setDetail] = useState<Animetype | null>(null);
   const sanitizedDescription = detail?.description ? DOMPurify.sanitize(detail.description) : null;
 
-  
+  const [token, setToken] = useState<string | null | undefined>();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setToken(token);
+  }, [])
+
   useEffect(() => {
 
     setLoading(true)
@@ -80,9 +86,13 @@ const AnimeDetail = (props: AnimeDetailProps) => {
                   <div className="anime-detail-title">
                     {titleShown &&  <h1 className="anime-detail-title">{titleShown}</h1>}
                   </div>
-                  <div className="anime-detail-bookmark" onClick={handleBookmark}>
-                    <span className={`material-symbols-rounded ${detail?.isFavourite ? "active" : "deactive"}`}>bookmark</span>
-                  </div>
+                  {
+                    token && (
+                      <div className="anime-detail-bookmark" onClick={handleBookmark}>
+                        <span className={`material-symbols-rounded ${detail?.isFavourite ? "active" : "deactive"}`}>bookmark</span>
+                      </div>
+                    )
+                  }
                 </div>
                 <div className="anime-detail-attribute">
                   <div className="anime-detail-genre">{detail?.genres?.join(" | ")}</div>

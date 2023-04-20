@@ -72,7 +72,7 @@ const AnimeList = (props: AnimeListProps) => {
     } finally {
       setLoading(false);
     }
-  }, [variables, search] ) 
+  }, [variables, search, genre] ) 
 
   useEffect(() => {
 
