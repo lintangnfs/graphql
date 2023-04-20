@@ -51,12 +51,12 @@ const AnimeList = (props: AnimeListProps) => {
 
       if (search && search.length > 0) {
 
-        variableNew = {...variables, search}
+        variableNew = {...variableNew, search}
       }
 
       if (genre && genre.length > 0) {
 
-        variableNew = {...variables, genre}
+        variableNew = {...variableNew, genre}
       }
 
       const data = await getDataAnimeList(variableNew);
@@ -103,13 +103,16 @@ const AnimeList = (props: AnimeListProps) => {
 
   const handleSearch = (e: any) => setSearch(e.target.value)
   const isFirstFetch = media === undefined || media === null;
-  
+  const handleReset = () => {
+    setSearch("");
+    setGenre("")
+  }
   return (
     <>
       <div className="anime-toolbox">
         <div style={{position: "relative"}}>
           <div className="anime-tool" style={{cursor: "pointer", color: "#1b101f"}} onClick={() => setOpenGenre(!openGenre)}>
-            Genre
+            {genre?.length > 0 ? genre : `Genre`}
           </div>
           {
             openGenre && (
@@ -137,6 +140,7 @@ const AnimeList = (props: AnimeListProps) => {
             value={search}
           />
         </div>
+        <div className="anime-tool" onClick={handleReset}>Reset</div>
       </div>
         {
           media && (
@@ -199,6 +203,9 @@ const AnimeList = (props: AnimeListProps) => {
             flex-direction: column;
             gap: 10px;
             margin-top: 10px;
+            min-width: 100%;
+            width: max-content;
+            border-radius: 16px;
           }
           .anime-genre .anime-genre-item {
             cursor: pointer;
@@ -209,24 +216,11 @@ const AnimeList = (props: AnimeListProps) => {
             color: white;
             background-color: black;
           }
-          @media (max-width: 1050px) {
-            .anime-content { 
-              grid-template-columns: repeat(4, 1fr);
-            }
-          }
-          @media (max-width: 840px) {
-            .anime-content { 
-              grid-template-columns: repeat(3, 1fr);
-            }
-          }
-          @media (max-width: 620px) {
-            .anime-content { 
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-          @media (max-width: 410px) {
-            .anime-content { 
-              grid-template-columns: repeat(1, 1fr);
+          @media (max-width: 600px) {
+            .anime-toolbox { 
+              width: 100%;
+              flex-direction: column;
+              justify-content: center;
             }
           }
         `}
@@ -239,6 +233,7 @@ const AnimeList = (props: AnimeListProps) => {
             border: solid 1px #1b101f;
             padding: 2px 10px;
             color: #1b101f;
+            text-align: center;
           }
         `}
       </style>

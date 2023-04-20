@@ -166,6 +166,22 @@ export default function Home() {
 						box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
             text-decoration: none;
           }
+          @media (max-width: 600px) {
+            .anime-title-top {
+              display: flex; 
+              flex-direction: column;
+              justify-content: space-between; 
+              align-items: center; 
+              max-width: 1200;
+              margin: 0 0 50px; 
+              gap: 10px;
+            }
+            .anime-action,
+            .anime-tool { 
+              width: 100%;
+              justify-content: center;
+            }
+          }
         `}
       </style>
     </>

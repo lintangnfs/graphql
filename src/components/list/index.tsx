@@ -40,6 +40,7 @@ const List = (props: ListProps) => {
             display: grid;
             gap: 15px;
             grid-template-columns: repeat(5, 1fr);
+            justify-items: center;
           }
           .anime-list {
             width: 100%;
@@ -61,7 +62,7 @@ const List = (props: ListProps) => {
               grid-template-columns: repeat(2, 1fr);
             }
           }
-          @media (max-width: 410px) {
+          @media (max-width: 420px) {
             .anime-content { 
               grid-template-columns: repeat(1, 1fr);
             }
