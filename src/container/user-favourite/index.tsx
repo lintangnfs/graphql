@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import AnimeCard from "components/card";
 import { Animetype, PageOptType } from 'utils/constant';
-import getDataAnimeList from "graphql/anime/list";
+import getDataUserFav from "graphql/user/favourites";
 import { useIntersect } from "hooks/useIntersectionObserverHooks";
 import List from "components/list";
 
-interface AnimeListProps {
+interface UserFavProps {
   options?: IntersectionObserverInit;
   isBookmark?: boolean;
 }
 
-const AnimeList = (props: AnimeListProps) => {
+const UserFav = (props: UserFavProps) => {
 
   const ref = useRef<HTMLDivElement>(null);
   const { setNode, entry } = useIntersect(props.options);
@@ -26,15 +25,6 @@ const AnimeList = (props: AnimeListProps) => {
 		() => pageOpt?.hasNextPage && !loading ? setVariables((prev) => ({...prev, page: variables.page + 1})) : null,
 		[loading, variables.page, pageOpt?.hasNextPage],
   );
-  
-  // const clean = (obj: any) => {
-  //   for (const propName in obj) {
-  //     if (obj[propName] === null || obj[propName] === undefined ||  obj[propName] === "" ||  obj[propName] === false) {
-  //       delete obj[propName];
-  //     }
-  //   }
-  //   return obj
-  // }
 
   useEffect(() => {
     if (ref.current) setNode(ref.current);
@@ -53,29 +43,32 @@ const AnimeList = (props: AnimeListProps) => {
 
     setLoading(true);
 
+    const auth = localStorage.getItem("auth");
+    const authJson = auth ? JSON.parse(auth) : null
+    const id = authJson?.id
+
     const fetchData = async () => {
-      // let vars = { ...variables };
-      // if (props.isBookmark) {
-      //   vars = {...vars, isFavourite: true};
-      // }
 
-      // const varCleaned = clean(vars);
+      if (id) {
 
-      try {
-        const data = await getDataAnimeList(variables);
-        const pageData = data && data?.data?.Page;
-        const mediaNew = pageData?.media;
-        const pageInfo = pageData?.pageInfo;
-        if (mediaNew && mediaNew.length > 0) {
-          setMedia((prev) => prev !== null ? [...prev, ...mediaNew] : []);
-          setPageOpt(pageInfo);
+        try {
+          const data = await getDataUserFav({ id });
+          if (data?.data) {
+            const favorites = data.data.User.favourites.anime.edges;
+            const anime = favorites.map((item: any) => {
+              const { node } = item;
+              return {...node}
+            })
+            setMedia(anime);
+          }
+  
+        } catch {
+  
+        } finally {
+          setLoading(false);
         }
-
-      } catch {
-
-      } finally {
-        setLoading(false);
       }
+      
     }
 
     fetchData();
@@ -149,4 +142,4 @@ const AnimeList = (props: AnimeListProps) => {
   );
 };
 
-export default AnimeList;
+export default UserFav;

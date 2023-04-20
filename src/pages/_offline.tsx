@@ -20,7 +20,7 @@ const Offline = () => {
           <p>Please connect to the internet</p>
         </div>
       </div>
-      <style jsx>
+      <style>
         {`
           .offline-page {
             width: 100vw;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Animetype } from 'utils/constant';
-import AnimeImage from "components/anime-image";
-import Rating from "components/anime-rating";
+import AnimeImage from "components/image";
+import Rating from "components/rating";
 
 interface CardProps {
   item: Animetype,

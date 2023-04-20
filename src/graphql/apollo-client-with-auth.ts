@@ -5,7 +5,7 @@ const httpLink = createHttpLink({
   uri: 'https://graphql.anilist.co',
 });
 
-const token = localStorage.getItem('token');
+const token = typeof window !== "undefined" ? localStorage.getItem('token') : null;
 
 const authLink = setContext((_, { headers }) => {
     

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Animetype } from 'utils/constant';
 import getDataAnimeDetail from "graphql/anime/detail";
-import mutateFavorite from "graphql/user/favorite";
-import AnimeImage from "components/anime-image";
-import Rating from "components/anime-rating";
+import mutateFavorite from "graphql/user/toggleFavorite";
+import AnimeImage from "components/image";
+import Rating from "components/rating";
 import DOMPurify from "dompurify";
 
 interface AnimeDetailProps {

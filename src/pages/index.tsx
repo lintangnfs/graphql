@@ -3,10 +3,12 @@ import client from "graphql/apollo-client";
 import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import getViewer from "graphql/user/viewer";
 
 const AnimeList = dynamic(() => import("container/anime-list"), {
   ssr: false,
 });
+
 
 export default function Home() {
   const router = useRouter();
@@ -26,22 +28,69 @@ export default function Home() {
         "token",
         window.location.href.split("=")[1].split("&")[0] ?? "none",
       );
+  
       router.push("/");
     }
   }, [router]);
+
+  useEffect(() => {
+
+    const authUser = localStorage.getItem("auth")
+
+    if (token && !authUser) {
+      
+      const fetchData = async () => {
+  
+        try {
+          const data : any = await getViewer({});
+          const Viewer = data?.data?.Viewer;
+          if (Viewer) {
+            const auth = {
+              id: Viewer?.id,
+              name: Viewer?.name
+            }
+
+            localStorage.setItem("auth", JSON.stringify(auth))
+          }
+  
+        } catch {
+          console.log("error get viewer")
+        } 
+      }
+
+      fetchData();
+    }
+  }, [token])
+
+  const handleShowBookmark = () => {
+    window.location.href = `/anime/bookmark`;
+  }
 
   
   return (
     <>
       <div className="anime-page"> 
         <div className="anime-content">
-          <div style={{display: "flex", justifyContent: "space-between"}}>
-            <h1 className="anime-title-page">ANIME WORLD</h1>
+          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+            <h1 className="anime-title-page" style={{color: "#1b101f"}}>ANIME WORLD</h1>
             {
-              token && clientId && (<a href={`https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&response_type=token`}>Login with AniList</a>)
+              !token && clientId && (<a href={`https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&response_type=token`}>Login with AniList</a>)
             }
             {
-              !token && (<div>Bookmark</div>)
+              token && (
+                <div style={
+                  {
+                    display: "flex",
+                    cursor: "pointer",
+                    fontSize: 16,
+                    alignItems: "center",
+                    color: "#1b101f"
+                  }}
+                  onClick={handleShowBookmark}
+                >
+                  <p style={{fontWeight: 600, marginRight: 8}}>Bookmark</p>
+                  <span className="material-symbols-rounded">bookmark</span>
+                </div>)
             }
           </div>
           <ApolloProvider client={client}>
