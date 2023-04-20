@@ -3,6 +3,7 @@ import { Animetype, PageOptType } from 'utils/constant';
 import getDataAnimeList from "graphql/anime/list";
 import { useIntersect } from "hooks/useIntersectionObserverHooks";
 import List from "components/list";
+import ListShimmer from "components/shimmer/list";
 
 interface AnimeListProps {
   options?: IntersectionObserverInit;
@@ -102,7 +103,6 @@ const AnimeList = (props: AnimeListProps) => {
   }, [])
 
   const handleSearch = (e: any) => setSearch(e.target.value)
-  const isFirstFetch = media === undefined || media === null;
   const handleReset = () => {
     setSearch("");
     setGenre("")
@@ -148,14 +148,10 @@ const AnimeList = (props: AnimeListProps) => {
           )
         }
         {
-          loading && isFirstFetch && (
-            <div className="anime-content">
-              <div className="anime-shimmer">
-
-              </div> 
-            </div>
+          loading && (
+            <ListShimmer/>
           )
-        }
+        } 
         <div ref={ref} style={{ height: 100 }}/>
       <style jsx>
         {`
@@ -176,16 +172,18 @@ const AnimeList = (props: AnimeListProps) => {
             display: flex;
           }
           .anime-toolbox {
+            gap: 10px;
             display: flex;
             margin-top: 10px;
             margin-bottom: 20px;
             justify-content: end;
-            gap: 10px;
+            align-items: center;
           }
           .anime-search-input{
+            min-width: 300px;
             width: 100%;
 						font-size: 14px;
-						padding: 4px 8px;
+						padding: 6px 8px;
 						border-radius: 16px;
 						text-decoration: none;
 						outline: none !important;
@@ -234,6 +232,7 @@ const AnimeList = (props: AnimeListProps) => {
             padding: 2px 10px;
             color: #1b101f;
             text-align: center;
+            align-self: center;
           }
         `}
       </style>

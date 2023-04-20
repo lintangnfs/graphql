@@ -3,6 +3,7 @@ import { Animetype, PageOptType } from 'utils/constant';
 import getDataUserFav from "graphql/user/favourites";
 import { useIntersect } from "hooks/useIntersectionObserverHooks";
 import List from "components/list";
+import ListShimmer from "components/shimmer/list";
 
 interface UserFavProps {
   options?: IntersectionObserverInit;
@@ -18,12 +19,11 @@ const UserFav = (props: UserFavProps) => {
     perPage: 20,
   });
   const [loading, setLoading] = useState(true);
-  const [pageOpt, setPageOpt] = useState<PageOptType | null>(null);
   const [media, setMedia] = useState<Animetype[] | null | []>(null);
 
   const handleChange = useCallback(
-		() => pageOpt?.hasNextPage && !loading ? setVariables((prev) => ({...prev, page: variables.page + 1})) : null,
-		[loading, variables.page, pageOpt?.hasNextPage],
+		() => !loading ? setVariables((prev) => ({...prev, page: variables.page + 1})) : null,
+		[loading, variables.page],
   );
 
   useEffect(() => {
@@ -79,8 +79,6 @@ const UserFav = (props: UserFavProps) => {
     window.location.href = `/anime/${id}`;
   }, [])
 
-  const isFirstFetch = media === undefined || media === null;
-
   return (
     <>
         {
@@ -88,15 +86,11 @@ const UserFav = (props: UserFavProps) => {
             <List data={media} handleViewDetail={handleViewDetail}/>
           )
         }
-      <div className="anime-content">
-          {
-            loading && isFirstFetch && (
-              <div className="anime-shimmer">
-
-              </div>
-            )
-          }
-        </div>
+        {
+          loading && (
+            <ListShimmer/>
+          )
+        } 
         <div ref={ref} style={{ height: 100 }}/>
       <style jsx>
         {`

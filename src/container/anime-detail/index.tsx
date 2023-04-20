@@ -5,6 +5,7 @@ import mutateFavorite from "graphql/user/toggleFavorite";
 import AnimeImage from "components/image";
 import Rating from "components/rating";
 import DOMPurify from "dompurify";
+import DetailShimmer from "components/shimmer/detail";
 
 interface AnimeDetailProps {
   options?: IntersectionObserverInit;
@@ -101,6 +102,9 @@ const AnimeDetail = (props: AnimeDetailProps) => {
               </div>
             </div>
           )
+        }
+        {
+          loading && (<DetailShimmer/>)
         }
         {
           !detail && !loading && (

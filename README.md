@@ -18,4 +18,4 @@ Simple anime platform to know more about anime =)
 
 ## Deploy on Vercel
 
-You can access this application by hit this [Link]( anime-world-seven.vercel.app)
+You can access this application by hit this [Link](https://anime-world-seven.vercel.app)
