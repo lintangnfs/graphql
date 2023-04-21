@@ -17,7 +17,8 @@ const nextConfig = withPWA({
   presets: [
     '@babel/preset-env',
     ['@babel/preset-react', {runtime: 'automatic'}],
-  ]
+  ],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.after.env.js']
 })
 
 module.exports = nextConfig

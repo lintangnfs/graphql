@@ -99,7 +99,7 @@ export default function Home() {
       <div className="anime-page"> 
         <div className="anime-content">
           <div className="anime-title-top" style={{color: "#1b101f"}}>
-            <h1 className="anime-title-page">ANIME WORLD</h1>
+            <h1 className="anime-title-page" data-testid="title" id="title">ANIME WORLD</h1>
             <div className="anime-action">
               {
                 !token && clientId && (<a className="anime-tool" href={`https://anilist.co/api/v2/oauth/authorize?client_id=${clientId}&response_type=token`}>Login with AniList</a>)
