@@ -204,7 +204,7 @@ const AnimeList = (props: AnimeListProps) => {
             flex-direction: column;
             gap: 10px;
             margin-top: 10px;
-            min-width: 100%;
+            min-width: 90%;
             width: max-content;
             border-radius: 16px;
           }
