@@ -110,6 +110,14 @@ const AnimeList = (props: AnimeListProps) => {
   return (
     <>
       <div className="anime-toolbox">
+        <div className="anime-input-wrapper">
+          <input
+            className="anime-search-input"
+            placeholder="Cari anime..."
+            onChange={handleSearch}
+            value={search}
+          />
+        </div>
         <div className="anime-genre-wrapper" style={{position: "relative"}}>
           <div className="anime-tool" style={{cursor: "pointer", color: "#1b101f"}} onClick={() => setOpenGenre(!openGenre)}>
             {genre?.length > 0 ? genre : `Genre`}
@@ -132,15 +140,11 @@ const AnimeList = (props: AnimeListProps) => {
             )
           }
         </div>
-        <div className="anime-input-wrapper">
-          <input
-            className="anime-search-input"
-            placeholder="Cari anime..."
-            onChange={handleSearch}
-            value={search}
-          />
-        </div>
-        <div className="anime-tool" onClick={handleReset}>Reset</div>
+        {
+          (genre?.length > 0 || search?.length > 0) && (
+            <div className="anime-tool" onClick={handleReset}>Reset</div>
+          )
+        }
       </div>
         {
           media && (

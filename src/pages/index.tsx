@@ -67,6 +67,11 @@ export default function Home() {
     window.location.href = `/anime/bookmark`;
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("auth");
+    window.location.href = `/`;
+  }
   
   return (
     <>
@@ -112,8 +117,25 @@ export default function Home() {
                     }}
                     onClick={handleShowBookmark}
                   >
-                    <p style={{fontWeight: 600, marginRight: 8}}>Bookmark</p>
+                    <p style={{fontWeight: 600, marginRight: 8}}>Your Bookmark</p>
                     <span className="material-symbols-rounded">bookmark</span>
+                  </div>)
+              }
+              {
+                token && (
+                  <div
+                    className="anime-tool"
+                    style={{
+                      display: "flex",
+                      cursor: "pointer",
+                      fontSize: 16,
+                      alignItems: "center",
+                      color: "#1b101f"
+                    }}
+                    onClick={handleLogout}
+                  >
+                    <p style={{fontWeight: 600, marginRight: 8}}>Logout</p>
+                    <span className="material-symbols-rounded">logout</span>
                   </div>)
               }
             </div>
@@ -179,6 +201,7 @@ export default function Home() {
             .anime-action {
               width: 100%;
               justify-content: center;
+              flex-direction: column;
             }
             .anime-tool { 
               width: 80%;
