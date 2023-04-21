@@ -184,7 +184,6 @@ const AnimeList = (props: AnimeListProps) => {
             align-items: center;
           }
           .anime-search-input{
-            min-width: 300px;
             width: 100%;
 						font-size: 14px;
 						padding: 6px 8px;
@@ -248,6 +247,7 @@ const AnimeList = (props: AnimeListProps) => {
               justify-content: center;
             }
             .anime-input-wrapper {
+              min-width: 300px;
               width: 100%;
               text-align: center;
             }
