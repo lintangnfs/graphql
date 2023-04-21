@@ -7,7 +7,18 @@ const mFavorite = gql`
       anime { 
           edges { 
               node { 
-                  id
+                id
+                title {
+                  native
+                  english
+                }
+                coverImage {
+                  large
+                }
+                genres
+                popularity
+                averageScore
+                isFavourite
               } 
           } 
       } 

@@ -1,4 +1,4 @@
-import client from "graphql/apollo-client-with-auth";
+import client from "graphql/apollo-client-cache";
 import qAnimeDetail from "./query";
 
 const getDataAnimeDetail = async (variables: {

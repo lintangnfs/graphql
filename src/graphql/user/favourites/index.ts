@@ -1,4 +1,4 @@
-import client from "graphql/apollo-client-with-auth";
+import client from "graphql/apollo-client";
 import qAnimeList from "./query";
 
 const getDataUserFav = async (variables: {

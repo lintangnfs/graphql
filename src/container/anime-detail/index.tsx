@@ -6,6 +6,8 @@ import AnimeImage from "components/image";
 import Rating from "components/rating";
 import DOMPurify from "dompurify";
 import DetailShimmer from "components/shimmer/detail";
+import client from "graphql/apollo-client-cache";
+import qAnimeDetail from "graphql/anime/detail/query";
 
 interface AnimeDetailProps {
   options?: IntersectionObserverInit;
@@ -48,16 +50,17 @@ const AnimeDetail = (props: AnimeDetailProps) => {
   
   const handleBookmark = async () => {
     
+    setLoading(true);
+
     try {
-
-      const data = await mutateFavorite({ animeId: props.dataId });
-      if (data?.data?.ToggleFavourite) {
-        window.location.href = `/anime/${props.dataId}`;
-      }
+      await mutateFavorite({ animeId: props.dataId });
+      alert('success to update bookmark');
     } catch {
-
+      alert('failed to update bookmark');
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        window.location.href = `/anime/${props.dataId}`;
+      }, 1500 );
     }
   }
 

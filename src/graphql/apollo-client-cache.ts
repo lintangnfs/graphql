@@ -39,7 +39,6 @@ if (typeof window !== "undefined") {
   }
 }
 
-
 const client = new ApolloClient({
   link: token ? authLink.concat(httpLink) : httpLink ,
   cache: cache
