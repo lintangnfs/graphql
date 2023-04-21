@@ -7,7 +7,6 @@ import ListShimmer from "components/shimmer/list";
 
 interface AnimeListProps {
   options?: IntersectionObserverInit;
-  isBookmark?: boolean;
 }
 
 const AnimeList = (props: AnimeListProps) => {
@@ -120,7 +119,7 @@ const AnimeList = (props: AnimeListProps) => {
         </div>
         <div className="anime-genre-wrapper" style={{position: "relative"}}>
           <div className="anime-tool" style={{cursor: "pointer", color: "#1b101f"}} onClick={() => setOpenGenre(!openGenre)}>
-            {genre?.length > 0 ? genre : `Genre`}
+            {genre?.length > 0 ? genre : `Filter Genre`}
           </div>
           {
             openGenre && (
@@ -237,6 +236,9 @@ const AnimeList = (props: AnimeListProps) => {
             text-align: center;
             align-self: center;
           }
+          .anime-input-wrapper {
+            min-width: 300px;
+          }
           @media (max-width: 600px) {
             .anime-genre-wrapper{
               width: 100%;
@@ -248,8 +250,8 @@ const AnimeList = (props: AnimeListProps) => {
               justify-content: center;
             }
             .anime-input-wrapper {
-              min-width: 300px;
               width: 100%;
+              min-width: 100%;
               text-align: center;
             }
             .anime-input-wrapper .anime-search-input {
@@ -269,4 +271,6 @@ const AnimeList = (props: AnimeListProps) => {
   );
 };
 
+
 export default AnimeList;
+

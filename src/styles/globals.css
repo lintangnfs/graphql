@@ -108,6 +108,15 @@ a {
   'opsz' 48
 }
 
+.offline-page {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
