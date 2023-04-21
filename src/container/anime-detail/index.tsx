@@ -54,13 +54,13 @@ const AnimeDetail = (props: AnimeDetailProps) => {
 
     try {
       await mutateFavorite({ animeId: props.dataId });
-      alert('success to update bookmark');
+      alert('success to update bookmark, please wait to update page');
     } catch {
       alert('failed to update bookmark');
     } finally {
       setTimeout(() => {
         window.location.href = `/anime/${props.dataId}`;
-      }, 1500 );
+      }, 2000 );
     }
   }
 
