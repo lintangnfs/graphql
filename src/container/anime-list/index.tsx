@@ -240,6 +240,7 @@ const AnimeList = (props: AnimeListProps) => {
           @media (max-width: 600px) {
             .anime-genre-wrapper{
               width: 100%;
+              position: relative;
             }
             .anime-tool { 
               width: 80%;
@@ -255,6 +256,11 @@ const AnimeList = (props: AnimeListProps) => {
               width: 80%;
               margin: auto;
               text-align: center;
+            }
+            .anime-genre {
+              position: absolute;
+              left: 50%;
+              transform: translate(-50%, 0);
             }
           }
         `}

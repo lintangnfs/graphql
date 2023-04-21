@@ -7,7 +7,7 @@ import getViewer from "graphql/user/viewer";
 import Head from "next/head";
 
 const AnimeList = dynamic(() => import("container/anime-list"), {
-  ssr: false,
+  ssr: true,
 });
 
 
